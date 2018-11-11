@@ -1,0 +1,19 @@
+{
+  "name": "async-arrays",
+  "version": "0.1.0",
+  "description": "Make better promises",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "array",
+    "async"
+  ],
+  "author": "tech_hutch",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-klasa": "github:dirigeants/klasa-lint"
+  }
+}

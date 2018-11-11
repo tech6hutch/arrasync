@@ -1,0 +1,7 @@
+{
+  "extends": "klasa",
+  "rules": {
+    "comma-dangle": ["error", "only-multiline"],
+    "id-length": ["error", {"min": 1}]
+  }
+}
