@@ -3,6 +3,7 @@ const assert = require('assert');
 const symbols = {
 	all: Symbol('all'),
 	filter: Symbol('filter'),
+	includes: Symbol('includes'),
 	join: Symbol('join'),
 	map: Symbol('map'),
 	reduce: Symbol('reduce'),
@@ -43,6 +44,13 @@ const AsyncArrayMethods = {
 			}, []));
 	},
 
+	async [symbols.includes](value) {
+		for (const promise of await this) {
+			if (await promise === value) return true;
+		}
+		return false;
+	},
+
 	async [symbols.join](separator = ',') {
 		return (await this)[symbols.reduce]((joined, element) =>
 			`${joined}${separator}${element}`);
@@ -60,7 +68,7 @@ const AsyncArrayMethods = {
 				async (accP, promise, i, array) => cb(await accP, await promise, i, array),
 				...[arguments.length > 1 ? initialValue : []],
 			]));
-	}
+	},
 
 };
 
