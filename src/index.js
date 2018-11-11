@@ -56,8 +56,10 @@ const AsyncArrayMethods = {
 
 	[symbols.reduce](cb, initialValue) {
 		return ArrayPromise.tryReject(async () =>
-			(await this).reduce(async (accP, promise, i, array) =>
-				cb(await accP, await promise, i, array), initialValue));
+			(await this).reduce(...[
+				async (accP, promise, i, array) => cb(await accP, await promise, i, array),
+				...[arguments.length > 1 ? initialValue : []],
+			]));
 	}
 
 };
