@@ -40,7 +40,7 @@ const AsyncArrayMethods = {
 	[symbols.filter](cb, thisArg) {
 		return ArrayPromise.tryReject(async () =>
 			(await this)[symbols.reduce](async (newArray, element, i, array) => {
-				if (await cb.call(thisArg, element, i, array)) newArray.push(element);
+				if (await cb.call(thisArg, element, i, array).catch(() => false)) newArray.push(element);
 				return newArray;
 			}, []));
 	},
