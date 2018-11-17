@@ -7,6 +7,7 @@ const symbols = {
 	join: Symbol('join'),
 	map: Symbol('map'),
 	reduce: Symbol('reduce'),
+	sort: Symbol('sort'),
 };
 
 
@@ -69,6 +70,10 @@ const AsyncArrayMethods = {
 				...[arguments.length > 1 ? initialValue : []],
 			]));
 	},
+
+	[symbols.sort](compareFn) {
+		return this[symbols.all]().then(self => self.sort(compareFn));
+	}
 
 };
 
